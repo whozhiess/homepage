@@ -1,12 +1,10 @@
 "use client";
-import Image from "next/image";
 import { useRef, useLayoutEffect, useState, useEffect } from "react";
 
 export default function Home() {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const [btnWidth, setBtnWidth] = useState<number>();
   const [showSidebar, setShowSidebar] = useState(false);
-  const [scrollCount, setScrollCount] = useState(0);
 
   const buttons = [
     { name: "telegram", href: "https://t.me/deshitpostbil" },
@@ -33,15 +31,13 @@ export default function Home() {
       }
       
       timeoutId = setTimeout(() => {
-        setScrollCount((prev) => {
-          if (prev === 0) {
-            setShowSidebar(true);
+        setShowSidebar((prev) => {
+          if (prev === false) {
             document.body.classList.add("svg-faded");
-            return 1;
+            return true;
           } else {
-            setShowSidebar(false);
             document.body.classList.remove("svg-faded");
-            return 0;
+            return false;
           }
         });
       }, 100);
